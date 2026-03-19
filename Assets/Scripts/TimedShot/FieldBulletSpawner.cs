@@ -35,9 +35,7 @@ public class FieldBulletSpawner : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance != null && GameManager.Instance.GetGameOver())
-            return;
-        if (timedShotPrefab == null)
+        if (GameManager.Instance.GetGameOver())
             return;
 
         if (Time.time >= nextSpawnTime)
