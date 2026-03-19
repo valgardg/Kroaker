@@ -72,7 +72,9 @@ public class CrosshairManager : MonoBehaviour
             return true;
         }
 
+        // if player was not shot, add score and increase shot index for level progression
         GameManager.Instance.CallAddScore(1);
+        GameManager.Instance.shotIndex += 1;
         
         return false;
     }

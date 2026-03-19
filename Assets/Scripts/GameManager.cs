@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
     private int playerScore = 0;
     private bool gameOver = false;
 
+    // LEVEL PROGRESSION
+    // progression will depend on number of *crosshair* shots fired
+    public int shotIndex = 0;
+    private int shotsToNextLevel = 5;
+    private int shotsToNextLevelIncrease = 3;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -28,7 +34,21 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        levelText.DisplayLevel(levelIndex, 0); // display initial level
+    }
+
+    void Update()
+    {
+        if (gameOver)
+            return;
+
+        // Handle level progression through crosshair shots
+        if (shotIndex >= shotsToNextLevel)
+        {
+            NewLevel();
+            shotIndex = 0;
+            shotsToNextLevel += shotsToNextLevelIncrease;
+        }
     }
 
     private void NewLevel()
