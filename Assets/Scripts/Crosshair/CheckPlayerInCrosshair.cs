@@ -37,7 +37,7 @@ public class CheckPlayerInCrosshair : MonoBehaviour
             if (quickShotLoad >= baseQuickShotTTK)
             {
                 Debug.Log("QUICK SHOT KILL");
-                GameManager.Instance.CallShootGun();
+                CrosshairManager.Instance.ShootGun();
                 yield break;
             }
 
