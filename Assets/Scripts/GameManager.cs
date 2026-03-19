@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public Jump playerJump;
     public LevelText levelText;
+    public LevelLabel LevelLabel;
     public ScoreText scoreText;
     public GameOverPanel gameOverPanel;
 
@@ -36,7 +37,9 @@ public class GameManager : MonoBehaviour
         levelIndex += 1;
         int levelScore = 5;
         AddScore(levelScore);
-        levelText.DisplayLevel(levelIndex, levelScore);
+        levelText.DisplayLevel(levelIndex, levelScore); // display level and score gained from level up
+        // update level label
+        LevelLabel.DisplayLevel(levelIndex);
 
         // Call crosshair manager to increase difficulty
         CrosshairManager.Instance.IncreaseDifficulty();
