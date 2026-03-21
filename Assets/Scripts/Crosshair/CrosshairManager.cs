@@ -100,6 +100,6 @@ public class CrosshairManager : MonoBehaviour
     {
         timeBetweenShots = Mathf.Max(1.0f, timeBetweenShots - 0.4f);
         timeBetweenReload = Mathf.Max(0.5f, timeBetweenReload - 0.1f);
-        crosshairFollowPlayer.IncreaseSpeed();
+        crosshairFollowPlayer.IncreaseSpeed(increaseSpeedAmount);
     }
 }
