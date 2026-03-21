@@ -7,7 +7,8 @@ public class FieldBulletSpawner : MonoBehaviour
     public GameObject timedShotPrefab;
 
     [Header("Spawn Settings")]
-    public float spawnInterval = 2f;
+    public float initialSpawnIndex = 1; // level index at which to start spawning
+    public float spawnInterval = 8f;
     public int spawnCount = 1;  // Number of shots to spawn each interval
     public float shotDelay = 1f;
     public float rotationRangeDegrees = 45f;  // random Z rotation within +/- this range
@@ -17,7 +18,8 @@ public class FieldBulletSpawner : MonoBehaviour
     public float defaultBulletSpeed = 10f;
     public float defaultBulletLifetime = 5f;
 
-    private float nextSpawnTime = 0f;
+    private float nextSpawnTime;
+    private bool spawningActive = true;
 
     void Start()
     {
@@ -37,6 +39,9 @@ public class FieldBulletSpawner : MonoBehaviour
     {
         if (GameManager.Instance.GetGameOver())
             return;
+        
+        if (!spawningActive)
+            return;
 
         if (Time.time >= nextSpawnTime)
         {
@@ -52,7 +57,9 @@ public class FieldBulletSpawner : MonoBehaviour
             float delay = i * shotDelay;
             Invoke(nameof(SpawnTimedShot), delay);
         }
-        nextSpawnTime = Time.time + spawnInterval;
+        // Wait for the last bullet's delay before starting the next interval
+        float totalDelay = (spawnCount - 1) * shotDelay;
+        nextSpawnTime = Time.time + spawnInterval + totalDelay;
     }
 
     private void SpawnTimedShot()
@@ -73,6 +80,20 @@ public class FieldBulletSpawner : MonoBehaviour
         else
         {
             Debug.LogWarning("FieldBulletSpawner: Spawned prefab has no TimedShot component.");
+        }
+    }
+
+    public void IncreaseDifficulty(int levelIndex)
+    {
+        if (levelIndex >= initialSpawnIndex) // start spawning at initialSpawnIndex
+        {
+            spawningActive = true;
+        }
+        if (spawningActive && (levelIndex - initialSpawnIndex) % 4 == 0) // every 4 levels, increase spawn count
+        {
+            spawnCount += 1;
+        } else {
+            spawnInterval = Mathf.Max(1f, spawnInterval - 0.5f); // decrease interval but not below 1 second
         }
     }
 }
