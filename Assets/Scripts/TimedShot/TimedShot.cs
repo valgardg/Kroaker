@@ -66,11 +66,10 @@ public class TimedShot : MonoBehaviour
         moveStartTime = Time.time;
     }
 
-    public void Initialize(float waitSeconds, float bulletSpeed, float bulletLifetime)
+    public void Initialize(float waitSeconds, float bulletSpeed)
     {
         this.waitSeconds = waitSeconds;
         this.bulletSpeed = bulletSpeed;
-        this.bulletLifetime = bulletLifetime;
 
         isMoving = false;
         moveStartTime = 0f;

@@ -16,7 +16,6 @@ public class FieldBulletSpawner : MonoBehaviour
     [Header("TimedShot Defaults")]
     public float defaultWaitSeconds = 1.5f;
     public float defaultBulletSpeed = 10f;
-    public float defaultBulletLifetime = 5f;
 
     private float nextSpawnTime;
     private bool spawningActive = false;
@@ -73,8 +72,8 @@ public class FieldBulletSpawner : MonoBehaviour
         TimedShot ts = instance.GetComponent<TimedShot>();
         if (ts != null)
         {
-            // Override timing/speed/lifetime; prefab holds path and bullet references
-            ts.Initialize(defaultWaitSeconds, defaultBulletSpeed, defaultBulletLifetime);
+            // Override timing/speed; prefab holds path and bullet references
+            ts.Initialize(defaultWaitSeconds, defaultBulletSpeed);
         }
         else
         {
