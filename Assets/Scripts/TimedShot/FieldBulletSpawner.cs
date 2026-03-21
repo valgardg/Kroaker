@@ -52,7 +52,6 @@ public class FieldBulletSpawner : MonoBehaviour
     // Spawn a batch of shots separated by shotDelay
     private void SpawnShots()
     {
-        Debug.Log("FieldBulletSpawner: Spawning " + spawnCount + " shots.");
         for (int i = 0; i < spawnCount; i++)
         {
             float delay = i * shotDelay;
