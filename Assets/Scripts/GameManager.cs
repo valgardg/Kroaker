@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     // progression will depend on number of *crosshair* shots fired
     public int shotIndex = 0;
     private int shotsToNextLevel = 5;
-    private int shotsToNextLevelIncrease = 3;
+    private int shotsToNextLevelIncrease = 1;
 
     void Awake()
     {
