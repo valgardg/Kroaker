@@ -7,6 +7,8 @@ public class CrosshairManager : MonoBehaviour
     public CheckPlayerInCrosshair checkPlayerInCrosshair;
     public FollowPlayer crosshairFollowPlayer;
 
+    [Header("Crosshair Settings")]
+    [SerializeField] private float increaseSpeedAmount = 0.4f;
     [SerializeField] private float baseTimeBetweenShots = 5f;
     private float baseTBSvariance = 0.4f;
     private float timeBetweenShots;
@@ -100,6 +102,6 @@ public class CrosshairManager : MonoBehaviour
     {
         timeBetweenShots = Mathf.Max(1.0f, timeBetweenShots - 0.4f);
         timeBetweenReload = Mathf.Max(0.5f, timeBetweenReload - 0.1f);
-        crosshairFollowPlayer.IncreaseSpeed();
+        crosshairFollowPlayer.IncreaseSpeed(increaseSpeedAmount);
     }
 }

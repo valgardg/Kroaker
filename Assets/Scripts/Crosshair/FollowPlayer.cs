@@ -5,7 +5,6 @@ public class FollowPlayer : MonoBehaviour
     Transform playerTransform;
     Rigidbody2D rb;
     public float startSpeed = 2f;
-    public float speedIncrement = 0.8f;
     [SerializeField] private bool followPlayer = false;
     [SerializeField] private float crosshairSpeed;
 
@@ -23,9 +22,9 @@ public class FollowPlayer : MonoBehaviour
         rb.linearVelocity = playerDirection.normalized * crosshairSpeed;
     }
 
-    public void IncreaseSpeed()
+    public void IncreaseSpeed(float speedIncrease)
     {
-        crosshairSpeed += speedIncrement;
+        crosshairSpeed += speedIncrease;
     }
 
     public void StopFollowPlayer()

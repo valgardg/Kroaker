@@ -7,23 +7,21 @@ public class FieldBulletSpawner : MonoBehaviour
     public GameObject timedShotPrefab;
 
     [Header("Spawn Settings")]
-    public float initialSpawnIndex = 1; // level index at which to start spawning
+    public float initialSpawnIndex = 3; // level index at which to start spawning
     public float spawnInterval = 8f;
     public int spawnCount = 1;  // Number of shots to spawn each interval
     public float shotDelay = 1f;
     public float rotationRangeDegrees = 45f;  // random Z rotation within +/- this range
 
     [Header("TimedShot Defaults")]
-    public float defaultWaitSeconds = 0.5f;
+    public float defaultWaitSeconds = 1.5f;
     public float defaultBulletSpeed = 10f;
-    public float defaultBulletLifetime = 5f;
 
     private float nextSpawnTime;
-    private bool spawningActive = true;
+    private bool spawningActive = false;
 
     void Start()
     {
-        nextSpawnTime = Time.time + spawnInterval;
         if (Instance == null)
         {
             Instance = this;
@@ -74,8 +72,8 @@ public class FieldBulletSpawner : MonoBehaviour
         TimedShot ts = instance.GetComponent<TimedShot>();
         if (ts != null)
         {
-            // Override timing/speed/lifetime; prefab holds path and bullet references
-            ts.Initialize(defaultWaitSeconds, defaultBulletSpeed, defaultBulletLifetime);
+            // Override timing/speed; prefab holds path and bullet references
+            ts.Initialize(defaultWaitSeconds, defaultBulletSpeed);
         }
         else
         {
@@ -85,15 +83,25 @@ public class FieldBulletSpawner : MonoBehaviour
 
     public void IncreaseDifficulty(int levelIndex)
     {
-        if (levelIndex >= initialSpawnIndex) // start spawning at initialSpawnIndex
+        if (levelIndex >= initialSpawnIndex && !spawningActive) // start spawning at initialSpawnIndex
         {
-            spawningActive = true;
+            StartSpawning();
         }
-        if (spawningActive && (levelIndex - initialSpawnIndex) % 4 == 0) // every 4 levels, increase spawn count
+        if (spawningActive && (levelIndex - initialSpawnIndex) % 3 == 0) // every 3 levels, increase spawn count
         {
             spawnCount += 1;
         } else {
             spawnInterval = Mathf.Max(1f, spawnInterval - 0.5f); // decrease interval but not below 1 second
+            defaultBulletSpeed += 1f; // increase bullet speed
+            defaultWaitSeconds = Mathf.Max(0.5f, defaultWaitSeconds - 0.1f); // decrease wait time but not below 0.5 seconds
+
         }
+    }
+
+    private void StartSpawning()
+    {
+        initialSpawnIndex = 2f;
+        nextSpawnTime = Time.time + initialSpawnIndex; // initial delay before first spawn
+        spawningActive = true;
     }
 }
