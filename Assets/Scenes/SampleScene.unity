@@ -592,7 +592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   startSpeed: 2
-  speedIncrement: 0.8
   followPlayer: 0
   crosshairSpeed: 5
 --- !u!58 &196020257
@@ -1342,6 +1341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CrosshairManager
   checkPlayerInCrosshair: {fileID: 196020258}
   crosshairFollowPlayer: {fileID: 196020256}
+  increaseSpeedAmount: 0.4
   baseTimeBetweenShots: 5
   baseTimeBetweenReload: 1
 --- !u!4 &798484993
@@ -1834,12 +1834,11 @@ MonoBehaviour:
   timedShotPrefab: {fileID: 8785344110295669892, guid: f17ed1ac6c57c4344a4b96302b81b730, type: 3}
   initialSpawnIndex: 3
   spawnInterval: 10
-  spawnCount: 2
+  spawnCount: 1
   shotDelay: 1
   rotationRangeDegrees: 360
   defaultWaitSeconds: 0.5
   defaultBulletSpeed: 10
-  defaultBulletLifetime: 5
 --- !u!1 &1110896806
 GameObject:
   m_ObjectHideFlags: 0
