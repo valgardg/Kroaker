@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   timedShotPrefab: {fileID: 8785344110295669892, guid: f17ed1ac6c57c4344a4b96302b81b730, type: 3}
-  initialSpawnIndex: 3
+  initialSpawnIndex: 1
   spawnInterval: 10
   spawnCount: 1
   shotDelay: 1
