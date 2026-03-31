@@ -20,6 +20,9 @@ public class FieldBulletSpawner : MonoBehaviour
     private float nextSpawnTime;
     private bool spawningActive = false;
 
+    [Header("Bullet Spawn Points")]
+    public Transform[] spawnPoints;
+
     void Start()
     {
         if (Instance == null)
@@ -64,10 +67,10 @@ public class FieldBulletSpawner : MonoBehaviour
     {
         if (GameManager.Instance != null && GameManager.Instance.GetGameOver())
             return;
-        float randRotZ = Random.Range(-rotationRangeDegrees, rotationRangeDegrees);
-        Quaternion spawnRot = Quaternion.Euler(0f, 0f, randRotZ);
 
-        GameObject instance = Instantiate(timedShotPrefab, transform.position, spawnRot);
+        // GameObject instance = Instantiate(timedShotPrefab, transform.position, spawnRot);
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        GameObject instance = Instantiate(timedShotPrefab, spawnPoint.position, Quaternion.identity);
 
         TimedShot ts = instance.GetComponent<TimedShot>();
         if (ts != null)
