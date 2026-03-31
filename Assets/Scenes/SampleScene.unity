@@ -2144,7 +2144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   timedShotPrefab: {fileID: 8785344110295669892, guid: f17ed1ac6c57c4344a4b96302b81b730, type: 3}
+<<<<<<< HEAD
   initialSpawnIndex: 3
+=======
+  initialSpawnIndex: 1
+>>>>>>> 28bf99c (feat(fieldBullet): added field bullet threat indicator (#5))
   spawnInterval: 1
   spawnCount: 1
   shotDelay: 1
@@ -2750,6 +2754,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1073131339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1520661275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,6 +2892,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520661275}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> 28bf99c (feat(fieldBullet): added field bullet threat indicator (#5))
 --- !u!1 &1602674141
 GameObject:
   m_ObjectHideFlags: 0
