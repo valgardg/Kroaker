@@ -11,7 +11,6 @@ public class FieldBulletSpawner : MonoBehaviour
     public float spawnInterval = 8f;
     public int spawnCount = 1;  // Number of shots to spawn each interval
     public float shotDelay = 1f;
-    public float rotationRangeDegrees = 45f;  // random Z rotation within +/- this range
 
     [Header("TimedShot Defaults")]
     public float defaultWaitSeconds = 1.5f;

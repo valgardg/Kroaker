@@ -5,6 +5,7 @@ public class GameOverPanel : MonoBehaviour
 {
     public TMP_Text levelText;
     public TMP_Text scoreText;
+    public TMP_Text highScoreText;
 
     void Start()
     {
@@ -14,9 +15,10 @@ public class GameOverPanel : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void DisplayGameOverPanel(int level, int score)
+    public void DisplayGameOverPanel(int level, int score, int highestLevel, int highScore)
     {
         levelText.text = $"You made it to level {level}!";
         scoreText.text = $"Your score was {score}!";
+        highScoreText.text = $"HIGHSCORE: lvl {highestLevel}, {highScore}!";
     }
 }
