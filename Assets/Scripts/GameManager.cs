@@ -1,11 +1,10 @@
-using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public Jump playerJump;
+    public JumpController playerJump;
     public LevelText levelText;
     public LevelLabel LevelLabel;
     public ScoreText scoreText;
@@ -13,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     private int levelIndex = 1;
     private int playerScore = 0;
+    private int highestLevel = 0;
+    private int highScore = 0;
     private bool gameOver = false;
 
     // LEVEL PROGRESSION
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        highestLevel = levelIndex;
         levelText.DisplayLevel(levelIndex, 0); // display initial level
     }
 
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         // Handle level info
         levelIndex += 1;
+        highestLevel = Mathf.Max(highestLevel, levelIndex);
         int levelScore = 5;
         AddScore(levelScore);
         levelText.DisplayLevel(levelIndex, levelScore); // display level and score gained from level up
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
     private void AddScore(int scoreToAdd)
     {
         playerScore += scoreToAdd;
+        highScore = Mathf.Max(highScore, playerScore);
         scoreText.DisplayScore(playerScore);
     }
 
@@ -83,7 +87,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         playerJump.SetAllowJump(false);
         gameOverPanel.gameObject.SetActive(true);
-        gameOverPanel.DisplayGameOverPanel(levelIndex, playerScore);
+        gameOverPanel.DisplayGameOverPanel(levelIndex, playerScore, highestLevel, highScore);
     }
 
     public void Reset()
