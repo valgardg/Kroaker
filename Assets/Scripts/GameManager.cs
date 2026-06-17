@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
 
         // Call increase difficulty
         CrosshairManager.Instance.IncreaseDifficulty();
-        FieldBulletSpawner.Instance.IncreaseDifficulty(levelIndex);
     }
 
     private void ReloadCurrentScene()
